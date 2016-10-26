@@ -1,0 +1,680 @@
+set_progress(0.0);
+ui_print("");
+ui_print("*******************");
+ui_print("XtreStoLite S6 G92xF/K/L/S add-on Package Installation");
+ui_print("Made by edgarf28");
+ui_print("*******************");
+ui_print("Preparing Process...");
+ui_print("Mounting Partitions...");
+run_program("/sbin/mount", "-t", "auto", "/system");
+run_program("/sbin/mount", "-t", "auto", "/data");
+run_program("/sbin/mount", "-t", "auto", "/cache");
+
+if file_getprop("/tmp/aroma-data/launcher.prop","selected.1") == "2" then
+ui_print("Flashing the Google Now Launcher and removing TouchWiz launcher...");
+package_extract_dir("Add-ons/GoogleHome", "/system");
+package_extract_dir("Add-ons/GoogleSearch/system", "/system");
+package_extract_file("tmp/rmscripts/GoogleSearch3.sh", "/tmp/GoogleSearch3.sh");
+set_perm(0, 0, 0777, "/tmp/GoogleSearch3.sh");
+run_program("/tmp/GoogleSearch3.sh");
+endif;
+
+if file_getprop("/tmp/aroma-data/launcher.prop","selected.1") == "3" then
+ui_print("Flashing back the TouchWiz Launcher and removing Google now launcher...");
+package_extract_dir("Add-ons/Touchwiz", "/system");
+package_extract_file("tmp/rmscripts/GoogleHome.sh", "/tmp/GoogleHome.sh");
+set_perm(0, 0, 0777, "/tmp/GoogleHome.sh");
+run_program("/tmp/GoogleHome.sh");
+endif;
+
+	# EdgeFeatures
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.1") == "1" then
+	ui_print("Installing The S6 Edge features...");
+	package_extract_dir("Add-ons/EdgeFeatures/system", "/system");
+	endif;
+
+	# AllShare
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.2") == "1" then
+	ui_print("Installing AllShare...");
+	package_extract_dir("Add-ons/AllShare/system", "/system");
+	symlink("/system/lib/libasf_fileshare.so", "/system/app/AllshareFileShare/lib/arm/libasf_fileshare.so");
+	symlink("/system/lib/libasf_fileshareserver.so", "/system/app/AllshareFileShareServer/lib/arm/libasf_fileshareserver.so");
+	symlink("/system/lib/libasf_mediashare.so", "/system/app/AllshareMediaShare/lib/arm/libasf_mediashare.so");
+	endif;
+
+	# UltraPowerSaveMode
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.3") == "1" then
+	ui_print("Installing Samsung Extreme Power Save Mode...");
+	package_extract_dir("Add-ons/ExtremePowerSaving/system", "/system");
+	endif;
+
+	# PrivateModeMod
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.4") == "1" then
+	ui_print("Installing Private Mode...");
+	package_extract_dir("Add-ons/PrivateMode/modded", "/system");
+	endif;
+
+	# Fingerprintscanner
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.5") == "1" then
+	ui_print("Installing Finger Print Scanner Support...");
+	package_extract_dir("Add-ons/FingerprintScanner/system", "/system");
+	endif;
+
+	# SmartWatchSupport
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.6") == "1" then
+	ui_print("Installing Smart Watch ANT+ Support...");
+	package_extract_dir("Add-ons/SmartWatchSupport/system", "/system");
+	endif;
+
+	# GearFitManager
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.7") == "1" then
+	ui_print("Installing Samsung Gear Fit Support...");
+	package_extract_dir("Add-ons/GearFitManager", "/system");
+	endif;
+
+	# GearManager
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.8") == "1" then
+	ui_print("Installing Samsung Gear Support...");
+	package_extract_dir("Add-ons/GearManager", "/system");
+	endif;
+
+	# MultiWindow
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.9") == "1" then
+	ui_print("Installing Samsung Multi-Window Support...");
+	package_extract_dir("Add-ons/MultiWindow", "/system");
+	endif;
+
+	# Samsung origiE-Mail
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.10") == "1" then
+	ui_print("Installing Original Samsung E-Mail app...");
+	package_extract_dir("Add-ons/E-mail/original", "/system");
+	endif;
+
+	# Quick Connect
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.11") == "1" then
+	ui_print("Installing Samsung Quick Connect...");
+	package_extract_dir("Add-ons/QuickConnect", "/system");
+	endif;
+
+	set_progress(0.2);
+	# SBrowser	
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.12") == "1" then
+	ui_print("Installing Samsung SBrowser...");
+	package_extract_dir("Add-ons/SBrowser", "/system");
+	endif;
+
+	# Scloud
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.13") == "1" then
+	ui_print("Installing Scloud Support...");
+	package_extract_dir("Add-ons/Scloud/system", "/system");
+	package_extract_dir("Add-ons/SamPush", "/system");
+	package_extract_file("tmp/rmscripts/SamsungService.sh", "/tmp/SamsungService.sh");
+	set_perm(0, 0, 0777, "/tmp/SamsungService.sh");
+	run_program("/tmp/SamsungService.sh");
+	package_extract_dir("Add-ons/SamsungService", "/system");
+	endif;
+
+	# SFinder
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.14") == "1" then
+	ui_print("Installing Samsung SFinder...");
+	package_extract_dir("Add-ons/SFinder/system", "/system");
+	endif;
+
+	# SHealth
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.15") == "1" then
+	ui_print("Installing Samsung SHealth...");
+	package_extract_dir("Add-ons/Shealth/system", "/system");
+	package_extract_file("tmp/rmscripts/SamsungService.sh", "/tmp/SamsungService.sh");
+	set_perm(0, 0, 0777, "/tmp/SamsungService.sh");
+	run_program("/tmp/SamsungService.sh");
+	package_extract_dir("Add-ons/SamsungService", "/system");
+	endif;
+
+	# SMemo
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.16") == "1" then
+	ui_print("Installing Samsung SMemo...");
+	package_extract_dir("Add-ons/SMemo", "/system");
+	endif;
+
+	# SPlanner
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.17") == "1" then
+	ui_print("Installing Samsung SPlanner...");
+	package_extract_dir("Add-ons/Splanner", "/system");
+	endif;
+
+	# ThemeManager
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.18") == "1" then
+	ui_print("Installing Samsung Theme Manager...");
+	package_extract_dir("Add-ons/ThemeManager", "/system");
+	package_extract_dir("Add-ons/SamsungService", "/system");
+	endif;
+
+	set_progress(0.3);
+	# SPrint
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.19") == "1" then
+	ui_print("Installing Samsung SPrint Support...");
+	package_extract_dir("Add-ons/SPrint/system", "/system");
+	symlink("/system/lib64/libprintspooler_jni6.so", "/system/app/SPrintSpooler6/lib/arm64/libprintspooler_jni6.so");
+	endif;
+
+	# Gear VR
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.20") == "1" then
+	ui_print("Installing Samsung Gear VR support...");
+	package_extract_dir("Add-ons/GearVR", "/system");
+	endif;
+
+	# SmartSwitch
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.21") == "1" then
+	ui_print("Installing Samsung SmartSwitch...");
+	package_extract_dir("Add-ons/SmartSwitch", "/system");
+	endif;
+
+	# SVoice
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.22") == "1" then
+	ui_print("Installing Samsung SVoice package...");
+	package_extract_dir("Add-ons/SVoice", "/system");
+	package_extract_dir("Add-ons/TTSVoices/system", "/system");
+	endif;
+
+	# TTS
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.23") == "1" then
+	ui_print("Installing Samsung TTS and Camera Voice control files...");
+	package_extract_dir("Add-ons/TTSVoices/system", "/system");
+	endif;
+
+	# WeahterWidget
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.24") == "1" then
+	ui_print("Installing Samsung AccuWeather Widget and App...");
+	package_extract_dir("Add-ons/Weatherwidget", "/system");
+	endif;
+
+	# SamFonts
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.25") == "1" then
+	ui_print("Installing Samsung Fonts...");
+	package_extract_dir("Add-ons/SamFonts", "/system");
+	endif;
+
+	# MyMagazine
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.26") == "1" then
+	ui_print("Installing Samsung My Magazine...");
+	package_extract_dir("Add-ons/MyMagazine/system", "/system");
+	endif;
+
+	# SamStore
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.27") == "1" then
+	package_extract_file("tmp/rmscripts/SamsungService.sh", "/tmp/SamsungService.sh");
+	set_perm(0, 0, 0777, "/tmp/SamsungService.sh");
+	run_program("/tmp/SamsungService.sh");
+	ui_print("Installing Samsung App Store...");
+	package_extract_dir("Add-ons/SamsungService", "/system");
+	package_extract_dir("Add-ons/SamStore/system", "/system");
+	endif;
+
+	# SmartRemote
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.28") == "1" then
+	ui_print("Installing Samsung SmartRemote...");
+	package_extract_dir("Add-ons/SmartRemote/system", "/system");
+	package_extract_file("tmp/rmscripts/SmartRemote2.sh", "/tmp/SmartRemote2.sh");
+	set_perm(0, 0, 0777, "/tmp/SmartRemote2.sh");
+	run_program("/tmp/SmartRemote2.sh");
+	endif;
+
+	set_progress(0.4);
+	# BabyCrying
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.29") == "1" then
+	ui_print("Installing Samsung Baby Crying Monitor...");
+	package_extract_dir("Add-ons/BabyCrying", "/system");
+	endif;
+
+	# VPN
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.30") == "1" then
+	ui_print("Installing VPN Connection Support files...");
+	package_extract_dir("Add-ons/VPN", "/system");
+	symlink("/system/lib/libcommonpawrapper.so", "/system/app/RootPA/lib/arm/libcommonpawrapper.so");
+	endif;
+
+	# VoiceNote
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.31") == "1" then
+	ui_print("Installing Samsung Voice Note...");
+	package_extract_dir("Add-ons/VoiceNote", "/system");
+	endif;
+
+	set_progress(0.5);
+	# ClockWidgets
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.32") == "1" then
+	ui_print("Installing Samsung Clock Widgets...");
+	package_extract_dir("Add-ons/ClockWidgets", "/system");
+	endif;
+
+	# AssistantMenu
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.33") == "1" then
+	ui_print("Installing Samsung Assistant Menu support...");
+	package_extract_dir("Add-ons/AssistantMenu", "/system");
+	endif;
+
+	set_progress(0.6);
+
+	# EasyMode
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.34") == "1" then
+	ui_print("Installing Samsung Easy Mode...");
+	package_extract_dir("Add-ons/EasyMode", "/system");
+	endif;
+
+	set_progress(0.7);
+	# LiveWallpaperPicker
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.35") == "1" then
+	ui_print("Installing Live Wallpaper Picker...");
+	package_extract_dir("Add-ons/LiveWallpaperPicker", "/system");
+	endif;
+
+	# STK
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.36") == "1" then
+	ui_print("Installing STK (Sim Toolkit) app...");
+	package_extract_dir("Add-ons/Stk", "/system");
+	endif;
+
+	# ColorBlind
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.37") == "1" then
+	ui_print("Installing ColorBlind function...");
+	package_extract_dir("Add-ons/ColorBlind", "/system");
+	endif;
+
+	# GoogleSearch
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.38") == "1" then
+	ui_print("Installing Google Search system app...");
+	package_extract_dir("Add-ons/GoogleSearch/system", "/system");
+	package_extract_file("tmp/rmscripts/GoogleSearch2.sh", "/tmp/GoogleSearch2.sh");
+	set_perm(0, 0, 0777, "/tmp/GoogleSearch2.sh");
+	run_program("/tmp/GoogleSearch2.sh");
+	endif;
+
+	# HearingAdjust
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.39") == "1" then
+	ui_print("Installing Hearing Adjust (Adapt Sound)...");
+	package_extract_dir("Add-ons/HearingAdjust", "/system");
+	symlink("/system/lib/libapa_jni.so", "/system/app/SapaMonitor/lib/arm/libapa_jni.so");
+	endif;
+
+	# ExtraCameraModes
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.40") == "1" then
+	ui_print("Installing Extra Camera Modes...");
+	package_extract_dir("Add-ons/ExtraCameraModes/ExtraCameraModes", "/data/media/0/ExtraCameraModes");
+	package_extract_dir("Add-ons/ExtraCameraModes/system", "/system");
+	set_metadata_recursive("/data/media/0/ExtraCameraModes", "uid", 1023, "gid", 1023, "dmode", 0775, "fmode", 0664, "capabilities", 0x0, "selabel", "u:object_r:media_rw_data_file:s0");
+	endif;
+
+	# NFCSmartCard
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.41") == "1" then
+	ui_print("Installing NFC Smart Card Service...");
+	package_extract_dir("Add-ons/NFCSmartcard", "/system");
+	endif;
+
+	# SamsungHelp
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.42") == "1" then
+	ui_print("Installing Samsung Help function...");
+	package_extract_dir("Add-ons/Help", "/system");
+	endif;
+
+	# SamsungMagnifier
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.43") == "1" then
+	ui_print("Installing Samsung Magnifier...");
+	package_extract_dir("Add-ons/Magnifier", "/system");
+	endif;
+
+	# Beamingservice
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.44") == "1" then
+	ui_print("Installing Beep 'n Go Beaming Service...");
+	package_extract_dir("Add-ons/BeamingService/system", "/system");
+	package_extract_file("tmp/rmscripts/BeamingService2.sh", "/tmp/BeamingService2.sh");
+	set_perm(0, 0, 0777, "/tmp/BeamingService2.sh");
+	run_program("/tmp/BeamingService2.sh");
+	endif;
+
+	# SamsungDictionary
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.45") == "1" then
+	ui_print("Installing Samsung Dictionary...");
+	package_extract_dir("Add-ons/Dictionary", "/system");
+	endif;
+
+	# MirrorLink
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.46") == "1" then
+	ui_print("Installing Mirror Link support...");
+	package_extract_dir("Add-ons/MirrorLink", "/system");
+	endif;
+
+	# SamsungSideSync
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.47") == "1" then
+	ui_print("Installing Samsung SideSync...");
+	package_extract_dir("Add-ons/SideSync", "/system");
+	endif;
+
+	# SamsungHighlightvideo
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.48") == "1" then
+	ui_print("Installing Samsung HighlightVideo...");
+	package_extract_dir("Add-ons/HighlightVideo", "/system");
+	endif;
+
+	# Accessibilitysettings
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.49") == "1" then
+	ui_print("Installing Different Accessibility Functions...");
+	package_extract_dir("Add-ons/Accessibility", "/system");
+	endif;
+
+	# SmartManager
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.50") == "1" then
+	ui_print("Installing Samsung Smart Manager...");
+	package_extract_dir("Add-ons/SmartManager/priv-app", "/system/priv-app");
+	package_extract_file("tmp/modlast_cscfeature.sh", "/tmp/modlast_cscfeature.sh");
+	package_extract_file("Add-ons/SmartManager/mod_csc.txt", "/tmp/mod_csc.txt");
+	set_metadata("/tmp/modlast_cscfeature.sh", "uid", 0, "gid", 0, "mode", 0777);
+	set_metadata("/tmp/mod_csc.txt", "uid", 0, "gid", 0, "mode", 0777);
+	run_program("/tmp/modlast_cscfeature.sh", "/tmp/mod_csc.txt");
+	delete("/tmp/modlast_cscfeature.sh");
+	delete("/tmp/mod_csc.txt");
+	endif;
+
+	# WallpaperPicker
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.51") == "1" then
+	ui_print("Installing Samsung Wallpaper Picker...");
+	package_extract_dir("Add-ons/SamsungWallpapers", "/system");
+	endif;
+
+	# TestApplications
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.52") == "1" then
+	ui_print("Installing Samsung Test Applications...");
+	package_extract_dir("Add-ons/SamTest/system", "/system");
+	package_extract_dir("Add-ons/SamTest/HW", "/tmp");
+	package_extract_file("tmp/frameworkservices.sh", "/tmp/frameworkservices.sh");
+	set_metadata("/tmp/frameworkservices.sh", "uid", 0, "gid", 0, "mode", 0755);
+	run_program("/tmp/frameworkservices.sh");
+	delete_recursive("/tmp/920");
+	delete_recursive("/tmp/925");
+	endif;
+
+	# Sview
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.53") == "1" then
+	ui_print("Installing S-view cover support...");
+	package_extract_dir("Add-ons/Sview", "/system");
+	endif;
+
+	# VideoTelephony
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.54") == "1" then
+	ui_print("Installing Video Telephony IMS support files...");
+	package_extract_dir("Add-ons/VideoTelephony", "/system");
+	endif;
+
+	# Airgestures
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.55") == "1" then
+	ui_print("Installing various air gesture features...");
+	package_extract_dir("Add-ons/Gestures/system", "/system");
+	package_extract_file("tmp/modlast_ff.sh", "/tmp/modlast_ff.sh");
+	package_extract_file("Add-ons/Gestures/motion/mod_csc.txt", "/tmp/mod_csc.txt");
+	set_metadata("/tmp/modlast_ff.sh", "uid", 0, "gid", 0, "mode", 0777);
+	set_metadata("/tmp/mod_csc.txt", "uid", 0, "gid", 0, "mode", 0777);
+	run_program("/tmp/modlast_ff.sh", "/tmp/mod_csc.txt");
+	delete("/tmp/modlast_ff.sh");
+	delete("/tmp/mod_csc.txt");	
+	endif;
+
+	# S7Gamelauncher
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.56") == "1" then
+	ui_print("Installing S7 Game Launcher...");
+	package_extract_dir("Add-ons/S7/gamelauncher", "/system");
+	endif;
+
+	# S7Wallpaperpicker
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.57") == "1" then
+	ui_print("Installing S7 Wallpaper picker...");
+	package_extract_dir("Add-ons/S7/wallpaperpicker", "/system");
+	endif;
+
+	# Toolbox
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.58") == "1" then
+	ui_print("Installing S5 Toolbox...");
+	package_extract_dir("Add-ons/Toolbox", "/system");
+	endif;
+
+	# S7Sounds
+	if file_getprop("/tmp/aroma-data/customize.prop","item.1.59") == "1" then
+	ui_print("Installing S7 System Sounds...");
+	package_extract_dir("Add-ons/systemsounds/GalaxyS7", "/system/media");
+	endif;
+
+ui_print("*******************");
+
+if file_getprop("/tmp/aroma-data/soundmod.prop","selected.1") == "2" then
+	ui_print("Installing Viper4Android...");
+	package_extract_dir("Add-ons/soundmod/viperdolby", "/system");
+	package_extract_dir("Add-ons/soundmod/viper", "/system");
+	package_extract_file("tmp/rmscripts/viper4aRMDolby.sh", "/tmp/viper4aRMDolby.sh");
+	set_perm(0, 0, 0777, "/tmp/viper4aRMDolby.sh");
+	run_program("/tmp/viper4aRMDolby.sh");
+	delete("/tmp/viper4aRMDolby.sh");
+endif;
+
+if file_getprop("/tmp/aroma-data/soundmod.prop","selected.1") == "3" then
+	ui_print("Installing Viper4Android + Dolby Atmos...");
+	package_extract_dir("Add-ons/soundmod/viperdolby", "/system");
+	package_extract_file("tmp/rmscripts/viper4a.sh", "/tmp/viper4a.sh");
+	set_perm(0, 0, 0777, "/tmp/viper4a.sh");
+	run_program("/tmp/viper4a.sh");
+	delete("/tmp/viper4a.sh");
+endif;
+
+if file_getprop("/tmp/aroma-data/soundmod.prop","selected.1") == "4" then
+	ui_print("Removing any sound mods and restoring stock sound files...");
+	package_extract_dir("Add-ons/soundmod/stock", "/system");
+	package_extract_file("tmp/rmscripts/viper4aRM.sh", "/tmp/viper4aRM.sh");
+	set_perm(0, 0, 0777, "/tmp/viper4aRM.sh");
+	run_program("/tmp/viper4aRM.sh");
+	delete("/tmp/viper4aRM.sh");
+endif;
+
+if file_getprop("/tmp/aroma-data/google.prop","item.1.1") == "1" then
+ui_print("Installing Google Calculator...");
+package_extract_dir("Add-ons/Google/calculator", "/system");
+package_extract_file("tmp/rmscripts/google/calculator.sh", "/tmp/calculator.sh");
+set_perm(0, 0, 0777, "/tmp/calculator.sh");
+run_program("/tmp/calculator.sh");
+delete("/tmp/calculator.sh");
+endif;
+
+if file_getprop("/tmp/aroma-data/google.prop","item.1.2") == "1" then
+ui_print("Installing Google Clock...");
+package_extract_dir("Add-ons/Google/clock", "/system");
+package_extract_file("tmp/rmscripts/google/clock.sh", "/tmp/clock.sh");
+set_perm(0, 0, 0777, "/tmp/clock.sh");
+run_program("/tmp/clock.sh");
+delete("/tmp/clock.sh");
+endif;
+
+if file_getprop("/tmp/aroma-data/google.prop","item.1.3") == "1" then
+ui_print("Installing Google Keyboard...");
+package_extract_dir("Add-ons/Google/keyboard", "/system");
+package_extract_file("tmp/rmscripts/google/keyboard.sh", "/tmp/keyboard.sh");
+set_perm(0, 0, 0777, "/tmp/keyboard.sh");
+run_program("/tmp/keyboard.sh");
+delete("/tmp/keyboard.sh");
+endif;
+
+if file_getprop("/tmp/aroma-data/google.prop","item.1.4") == "1" then
+ui_print("Installing Google Music...");
+package_extract_dir("Add-ons/Google/music", "/system");
+package_extract_file("tmp/rmscripts/google/music.sh", "/tmp/music.sh");
+set_perm(0, 0, 0777, "/tmp/music.sh");
+run_program("/tmp/music.sh");
+delete("/tmp/music.sh");
+endif;
+
+if file_getprop("/tmp/aroma-data/google.prop","item.1.5") == "1" then
+ui_print("Installing Google Photos...");
+package_extract_dir("Add-ons/Google/photos", "/system");
+package_extract_file("tmp/rmscripts/google/photos.sh", "/tmp/photos.sh");
+set_perm(0, 0, 0777, "/tmp/photos.sh");
+run_program("/tmp/photos.sh");
+delete("/tmp/photos.sh");
+endif;
+
+if file_getprop("/tmp/aroma-data/google.prop","item.1.6") == "1" then
+ui_print("Installing Google Messenger...");
+package_extract_dir("Add-ons/Google/messenger", "/system");
+package_extract_file("tmp/rmscripts/google/messenger.sh", "/tmp/messenger.sh");
+set_perm(0, 0, 0777, "/tmp/messenger.sh");
+run_program("/tmp/messenger.sh");
+delete("/tmp/messenger.sh");
+endif;
+
+if file_getprop("/tmp/aroma-data/emoji.prop","selected.1") == "2" then
+ui_print("Flashing iOS 9.3 Emoji's...");
+package_extract_dir("Add-ons/emoji/iOS", "/system");
+endif;
+
+if file_getprop("/tmp/aroma-data/emoji.prop","selected.1") == "3" then
+ui_print("Flashing iOS 9.3 Flat Emoji's...");
+package_extract_dir("Add-ons/emoji/iOSflat", "/system");
+endif;
+
+if file_getprop("/tmp/aroma-data/emoji.prop","selected.1") == "4" then
+ui_print("Flashing AOSP N Emoji's...");
+package_extract_dir("Add-ons/emoji/AOSP", "/system");
+endif;
+
+if file_getprop("/tmp/aroma-data/emoji.prop","selected.1") == "5" then
+ui_print("Flashing default Samsung MM Emoji's...");
+package_extract_dir("Add-ons/emoji/Samsung", "/system");
+endif;
+
+if file_getprop("/tmp/aroma-data/systemui.prop","selected.1") == "2" then
+ui_print("Flashing Modded SystemUI with 3Minit Battery Mod...");
+package_extract_dir("Add-ons/SystemUIMods/3Minit", "/system");
+endif;
+
+if file_getprop("/tmp/aroma-data/systemui.prop","selected.1") == "3" then
+ui_print("Flashing Modded SystemUI with Removed gray statusbar when using PowerSaving mode...");
+package_extract_dir("Add-ons/SystemUIMods/PowerStatusbar", "/system");
+package_extract_file("tmp/clean3minit.sh", "/tmp/clean3minit.sh");
+set_perm(0, 0, 0777, "/tmp/clean3minit.sh");
+run_program("/tmp/clean3minit.sh");
+delete("/tmp/clean3minit.sh");
+endif;
+
+if file_getprop("/tmp/aroma-data/systemui.prop","selected.1") == "4" then
+ui_print("Flashing Modded SystemUI with 3Minit Battery & Removed gray statusbar Mod...");
+package_extract_dir("Add-ons/SystemUIMods/3Minit", "/system");
+package_extract_dir("Add-ons/SystemUIMods/3MinitPlusPowerStatusbar", "/system");
+endif;
+
+if file_getprop("/tmp/aroma-data/systemui.prop","selected.1") == "5" then
+ui_print("Good Lock SystemUI...");
+package_extract_dir("Add-ons/SystemUIMods/GoodLock", "/system");
+package_extract_file("tmp/clean3minit.sh", "/tmp/clean3minit.sh");
+set_perm(0, 0, 0777, "/tmp/clean3minit.sh");
+run_program("/tmp/clean3minit.sh");
+delete("/tmp/clean3minit.sh");
+endif;
+
+if file_getprop("/tmp/aroma-data/systemui.prop","selected.1") == "6" then
+ui_print("Restoring Stock SystemUI...");
+package_extract_dir("Add-ons/SystemUIMods/original", "/system");
+package_extract_file("tmp/clean3minit.sh", "/tmp/clean3minit.sh");
+set_perm(0, 0, 0777, "/tmp/clean3minit.sh");
+run_program("/tmp/clean3minit.sh");
+delete("/tmp/clean3minit.sh");
+endif;
+
+if file_getprop("/tmp/aroma-data/adblock.prop","selected.1") == "2" then
+ui_print("Installing Adblock hosts file...");
+package_extract_dir("Add-ons/adblock/on", "/system/etc");
+endif;
+
+if file_getprop("/tmp/aroma-data/adblock.prop","selected.1") == "3" then
+ui_print("Restoring empty hosts file (disable ad-blocking)...");
+package_extract_dir("Add-ons/adblock/off", "/system/etc");
+endif;
+
+ui_print("Settings Permissions & Symlinks...");
+set_metadata("/system/bin/IPSecService", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:IPSecService_exec:s0");
+set_metadata_recursive("/system/csc", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata("/system/etc/floating_feature.xml", "uid", 0, "gid", 0, "mode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata_recursive("/system/app", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata_recursive("/system/priv-app", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+set_metadata_recursive("/system/vendor", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+run_program("/sbin/sh", "-c", "busybox find /system/vendor -type d -exec chown 0:2000 {} \;");
+set_metadata_recursive("/system/su.d", "uid", 0, "gid", 0, "dmode", 0700, "fmode", 0700, "capabilities", 0x0, "selabel", "u:object_r:system_file:s0");
+
+package_extract_file("tmp/toolspermissions.sh", "/tmp/toolspermissions.sh");
+set_perm(0, 0, 0777, "/tmp/toolspermissions.sh");
+run_program("/tmp/toolspermissions.sh");
+delete("/tmp/toolspermissions.sh");
+
+ui_print("*******************");
+ui_print("Cleaning up...");
+delete_recursive("/cache");
+delete_recursive("/data/dalvik-cache");
+
+if file_getprop("/tmp/aroma-data/stockkernel.prop","selected.1") == "2" then
+				ui_print("Flashing latest G920F Stock kernel...");
+				package_extract_file("tmp/rmscripts/su.sh", "/tmp/su.sh");
+				set_perm(0, 0, 0777, "/tmp/su.sh");
+				run_program("/tmp/su.sh");
+				delete("/tmp/su.sh");
+				package_extract_file("tmp/kernels/920stock/boot.img", "/dev/block/platform/15570000.ufs/by-name/BOOT");
+				ui_print("Installing system-less SuperSu & su.d scripts...");
+				unmount("/system");
+				package_extract_dir("tmp/supersu", "/tmp/supersu");
+				run_program("/sbin/busybox", "unzip", "/tmp/supersu/supersu.zip", "META-INF/com/google/android/*", "-d", "/tmp/supersu");
+				run_program("/sbin/busybox", "sh", "/tmp/supersu/META-INF/com/google/android/update-binary", "dummy", "1", "/tmp/supersu/supersu.zip");
+endif;
+
+if file_getprop("/tmp/aroma-data/stockkernel.prop","selected.1") == "3" then
+				ui_print("Flashing latest G925F Stock kernel...");
+				package_extract_file("tmp/rmscripts/su.sh", "/tmp/su.sh");
+				set_perm(0, 0, 0777, "/tmp/su.sh");
+				run_program("/tmp/su.sh");
+				delete("/tmp/su.sh");
+				package_extract_file("tmp/kernels/925stock/boot.img", "/dev/block/platform/15570000.ufs/by-name/BOOT");
+				ui_print("Installing system-less SuperSu & su.d scripts...");
+				unmount("/system");
+				package_extract_dir("tmp/supersu", "/tmp/supersu");
+				run_program("/sbin/busybox", "unzip", "/tmp/supersu/supersu.zip", "META-INF/com/google/android/*", "-d", "/tmp/supersu");
+				run_program("/sbin/busybox", "sh", "/tmp/supersu/META-INF/com/google/android/update-binary", "dummy", "1", "/tmp/supersu/supersu.zip");
+endif;
+
+if file_getprop("/tmp/aroma-data/stockkernel.prop","selected.1") == "4" then
+				ui_print("Flashing latest G920T Stock kernel...");
+				package_extract_file("tmp/rmscripts/su.sh", "/tmp/su.sh");
+				set_perm(0, 0, 0777, "/tmp/su.sh");
+				run_program("/tmp/su.sh");
+				delete("/tmp/su.sh");
+				package_extract_file("tmp/kernels/920W8Tstock/boot.img", "/dev/block/platform/15570000.ufs/by-name/BOOT");
+				ui_print("Installing system-less SuperSu & su.d scripts...");
+				unmount("/system");
+				package_extract_dir("tmp/supersu", "/tmp/supersu");
+				run_program("/sbin/busybox", "unzip", "/tmp/supersu/supersu.zip", "META-INF/com/google/android/*", "-d", "/tmp/supersu");
+				run_program("/sbin/busybox", "sh", "/tmp/supersu/META-INF/com/google/android/update-binary", "dummy", "1", "/tmp/supersu/supersu.zip");
+endif;
+
+if file_getprop("/tmp/aroma-data/stockkernel.prop","selected.1") == "5" then
+				ui_print("Flashing latest G925T Stock kernel...");
+				package_extract_file("tmp/rmscripts/su.sh", "/tmp/su.sh");
+				set_perm(0, 0, 0777, "/tmp/su.sh");
+				run_program("/tmp/su.sh");
+				delete("/tmp/su.sh");
+				package_extract_file("tmp/kernels/925W8Tstock/boot.img", "/dev/block/platform/15570000.ufs/by-name/BOOT");
+				ui_print("Installing system-less SuperSu & su.d scripts...");
+				unmount("/system");
+				package_extract_dir("tmp/supersu", "/tmp/supersu");
+				run_program("/sbin/busybox", "unzip", "/tmp/supersu/supersu.zip", "META-INF/com/google/android/*", "-d", "/tmp/supersu");
+				run_program("/sbin/busybox", "sh", "/tmp/supersu/META-INF/com/google/android/update-binary", "dummy", "1", "/tmp/supersu/supersu.zip");
+endif;
+
+delete_recursive("/tmp");
+ui_print("Unmounting all the partitions...");
+set_progress(0.9);
+unmount("/system");
+unmount("/data");
+run_program("/sbin/sleep", "2");
+ui_print("******************************************"); 
+ui_print("        Successfully Finished             "); 
+ui_print("******************************************"); 
+set_progress(1.0); 

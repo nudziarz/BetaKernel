@@ -1,0 +1,244 @@
+ini_set("rom_name",			"XtreStoLite S6 Deodex Mod Add-on package");
+ini_set("rom_version",		"3.3.1 DPDP FINAL");
+ini_set("rom_author",		"edgarf28");
+ini_set("rom_device",		"Samsung Galaxy S6 G92xF/I/W8/T/K/L/S");
+ini_set("rom_date",			"May, 12 2015");
+##
+anisplash(
+    3,
+    "splash/XtreStoLite", 1500
+);
+
+fontresload( "0", "ttf/DroidSans.ttf;", "12" ); #-- Use sets of font (Font Family)
+
+theme("touchwiz");
+
+viewbox(
+    "Welcome",
+    "You are about to start the <b>"+
+	  ini_get("rom_name")+
+	"</b> for <b>"+ini_get("rom_device")+"</b>.\n\n"+
+    "Relevant information of the Package:\n\n"+
+	  "  Rom\t		<b><#selectbg_g>"+ini_get("rom_name")+"</#></b>\n"+
+      "  Version\t	<b><#selectbg_g>"+ini_get("rom_version")+"</#></b>\n"+
+	  "  Date\t 		<b><#selectbg_g>May, 12 2015</#></b>\n\n"+
+    "<b><#f00>Only for G92xF/FD/I/W8/T/K/L/S versions of the Galaxy S6</#></b>\n\n\n"+	
+	"Press Next to Continue ...",
+    "@welcome"
+);
+
+agreebox(
+  #-- Title
+    "READ THIS",
+  
+  #-- Subtitle / Description
+    "Please read before going further",
+  
+  #-- Icon
+    "@license",
+  
+  #-- Text Content ( Read from <AROMA Resource Dir>/license.txt )
+    resread("license.txt"),
+  
+  #-- Checkbox Text
+    "I Agree with this",
+  
+  #-- Unchecked Alert Message
+    "Please check the Agree box first"
+);
+
+checkbox(
+  "Install Add-ons",
+  "Select what to install:",
+  "icons/personalize",
+  "customize.prop",
+	
+	"","",                 2, #-- Group 1
+	"Galaxy S6 Edge features","The extra features for the Galaxy S6 Edge",0,
+	"AllShare/WiFi-Direct/Screen-Mirroring/S-Beam","AllShare media streaming, this also includes WiFi-Direct & Screen Mirroring",0,
+	"Ultra Power Saving and Emergency Mode","This also needs the Samsung Keyboard to be installed, otherwise you will get FC's in U-Power Saving Mode!!",0,
+	"Private Mode","Modded Private Mode that also works without Xposed framework",0,
+	"Fingerprint Scanner support","",0,
+	"Smart Watch ANT+ Support","To enable support for Smart Watches (from other brands than Samsung)",0,
+	"Gear Fit Manager & ANT+ support","To enable support for Samsung Gear Fit bands (this also includes ANT+ support)",0,
+	"Gear Manager & ANT+ support","To enable support for Samsung Gear Smart Watches (this also includes ANT+ support)",0,
+	"Multi Window","Enable support for Multi-Window function + Floating Window function of Samsung Video/Keyboard apps",0,
+	"Samsung Mail app","Original Samsung E-Mail app",0,
+	"Samsung Quick Connect","Also select AllShare from above please",0,
+	"Samsung SBrowser","Default Samsung Internet Browser",0,
+	"Samsung SCloud","Sync your Contacts/Calendar/Internet with Samsung also Phone/Messages/E-Mail backup/restore (requires the Samsung Mail app)",0,
+	"S-Finder","Search index tool accessible from the notification panel",0,
+	"S-Health","",0,
+	"S-Memo","Samsung's notation app",0,
+	"S-Planner","Samsung's calendar app",0,
+	"Theme Manager","Galaxy S6 Theme Manager & Store",0,
+	"S-Print","Samsung S-Print print support",0,
+	"Gear VR support","Gear VR Support apps",0,
+	"Smart Switch support","Smart Switch Desktop app support",0,
+	"S-Voice","Contains S-Voice, Voice WakeUp, Camera Voice Control & Samsung TTS",0,
+	"Samsung TTS","Text-to-speech voices from Samsung, With Camera Voice control support",0,
+	"Samsung Weather Widget","Samsung's AccuWeather weather Widget and App (this includes the Weather Daemon)",0,
+	"Samsung Fonts","1060+ different system fonts by @Winb33, which you can choose in the Display Settings",0,
+	"Samsung Flipboard Briefing","Flipboard Briefing (a.k.a My Magazine) Flipboard home-screen news page function",0,
+	"Samsung Galaxy Apps Store","Samsung's App Store, to update the integrated Samsung apps",0,
+	"Samsung SmartRemote","Samsung IR TV Remote app",0,
+	"Samsung Baby Crying Sound detector monitor","",0,
+	"VPN Connection Support","",0,
+	"Samsung Voice Note","Samsung's voice recorder app",0,
+	"Samsung Clock Widgets","The Samsung Digital Clock and Dual Clock widgets",0,
+	"Samsung Assistant Menu","Floating buttons to control your phone",0,
+	"Samsung Easy Mode","Including the Easy mode widgets",0,
+	"Live Wallpapers Picker","Including Stock Android Live Wallpapers",0,
+	"Stk (Sim Toolkit)","Sim Toolkit app",0,
+	"ColorBlind","The Color adjustment function in  Settings -> Accessibility -> Vision",0,
+	"Google Search","Google Search system app, needed to get OK Google Everywhere working",0,
+	"Hearing Adjust (Adapt Sound)","Tool to adjust the Sound volume/quality for your ears",0,
+	"Extra Camera Modes (+ YouTube Live Broadcasting)","9 Extra Samsung Camera Modes, ATTENTION: The apk files gets copied to your internal memory, install them manually!",0,
+	"NFC SmartCard service","NFC Smart card/tag service",0,
+	"Samsung Help","The Help function that you can find in many Samsung/system apps & Online Manual",0,
+	"Samsung Magnifier","The Magnifier that you can find in the Toolbox function",0,
+	"Beep 'n Go Beaming Service","Beep 'n Go Barcode Beaming Service",0,
+	"Samsung Dictionary","Get definitions/synonyms of selected words with this Dictionary add-on",0,
+	"Samsung Mirror Link","Mirror your phone screen on your car display (if your car's display supports Mirror Link)",0,
+	"Samsung SideSync","Control your phone screen from your PC or tablet",0,
+	"Samsung Video Editor & HighLight Video service","Editor to edit your recorded videos & the Highlight/Collage video function in the Samsung Gallery",0,
+	"Different Accessibility functions","Easy One Hand mode, Access Control, Import/export accessibility settings, S-Talkback & Virtual Softkey",0,
+	"Smart Manager","Samsung Smart Manager, extended version with App Lock, App permission manager and Call/message block",0,
+	"Samsung Wallpaper Picker","Wallpaper Picker, to choose your wallpaper and lockscreen wallpaper",0,
+	"Samsung Test applications","Samsung Service apps to run dialer service codes",0,
+	"S-View cover","Add S-view and other Samsung smart covers support",0,
+	"Video-Telephony & IMS Support","Video Telephony and IMS (voip/VoLTE) support files",0,
+	"Various Air gesture features","The different Air gesture features that you can find under Settings -> Advanced features",0,
+	"S7 Touchwiz Game Launcher","Ported Galaxy S7 TouchWiz Game launcher plugin",0,
+	"S7 Wallpaper Picker","Ported Galaxy S7 Wallpaper picker with the stock S7 wallpapers",0,
+	"S5 Toolbox","Ported Galaxy S5 Toolbox add-on, to quickly access 5 favorite apps from anywhere",0,
+	"S7 System sounds","Galaxy S7 System sounds",0
+);
+
+selectbox(
+	  "Sound Mod",
+	  "SoundMod",
+	  "icons/update",
+	  "soundmod.prop",
+
+	  "Select if you want to install an sound mod",	"",	                               		                  2, #-- Group 1. key = "selected.1"
+	  "Flash Nothing",							"Flash nothing, I want to keep my current sound files",										1,	#-- selected.1 = 1
+	  "Viper4Android",			"This flashes the latest Viper4Android version and automatically installs the driver",							0,	#-- selected.1 = 2
+	  "Viper4Android + Dolby Atmos",					"This installs above sound mod + Dolby Atmos sound mod",	0,	#-- selected.1 = 3
+	  "Flash back stock sound files",					"This will remove any installed sound mod, and restores stock sound files",	0	#-- selected.1 = 4
+);
+
+selectbox(
+	  "Which Launcher to install",
+	  "Launcher",
+	  "icons/update",
+	  "launcher.prop",
+
+	  "Select the launcher you want",	"",	                               		                  2, #-- Group 1. key = "selected.1"
+	  "Flash Nothing",							"Flash nothing, I want to keep my current Launcher",										1,	#-- selected.1 = 1
+	  "Google Now Launcher",			"This flashes the Latest Google Now launcher + Google Search app and removes TouchWiz Launcher",							0,	#-- selected.1 = 2
+	  "Flash back TouchWiz",					"This will flash back the TouchWiz launcher + removes Google Now launcher",	0	#-- selected.1 = 3
+);
+
+checkbox(
+  "Choose which Google apps you want to use",
+  "Select what to install:",
+  "icons/personalize",
+  "google.prop",
+
+	  "Select the Google apps you want to use instead of the default Samsung ones",	"",	                 2, #-- Group 1
+	  "Google Calculator",			"This will flash the Google Calculator app, and removes the Samsung Calculator app",			0,
+	  "Google Clock / Alarm app",	"This will flash the Google Clock app, and removes the Samsung Clock app",						0,
+	  "Google Keyboard",			"This will flash the Google Keyboard, and removes the Samsung Keyboard",						0,
+	  "Google Music",				"This will flash the Google Music app, and removes the Samsung Music app",						0,
+	  "Google Photos",				"This will flash the Google Photos app, and removes the Samsung Gallery app",					0,
+	  "Google Messenger",			"This will flash the Google Messenger app, and removes the Samsung Messages app",				0
+);
+
+selectbox(
+	  "What to install",
+	  "Emoji font",
+	  "icons/update",
+	  "emoji.prop",
+
+	  "Select the Emoji font you want",	"",	                               		                  2, #-- Group 1. key = "selected.1"
+	  "Flash nothing",							"Flash nothing, I want to keep my currently installed Emoji font",						1,	#-- selected.1 = 1
+	  "iOS 9.3 Emoji's",							"iOS 9.3 Emoji icons",							0,	#-- selected.1 = 2
+	  "iOS 9.3 Flat Emoji's",					"iOS 9.3 Flat Emoji icons",							0,	#--	selected.1 = 3
+	  "AOSP N Emoji's",							"AOSP Android N Emoji icons",						0,	#-- selected.1 = 4
+	  "Default Samsung MM emoji's",   				"The default Samsung Marshmallow Emoji icons",	0	#-- selected.1 = 5
+);
+
+selectbox(
+	  "SystemUI",
+	  "Customization options",
+	  "icons/update",
+	  "systemui.prop",
+
+	  "Choose your SystemUI",	"",	                               		                  2, #-- Group 1. key = "selected.1"
+	  "Flash nothing",		"Flash nothing, I want to keep my current SystemUI",					1,	#-- selected.1 = 1
+	  "3Minit Battery Mod",		"Modded SystemUI with 3Minit Battery mod",		0,	#-- selected.1 = 2
+	  "Remove gray status bar when using PowerSaveMode",	"Disable the Gray status bar when using the Power Saving mode",		0,	#-- selected.1 = 3
+	  "3Minit + Remove gray status bar",	"Above 2 mods combined",	0,	#-- selected.1 = 4
+	  "Good Lock New SystemUI",	"Completly new re-designed SystemUI by Samsung",	0,	#-- selected.1 = 5
+	  "Restore Stock SystemUI",	"Restore the Stock SystemUI (including the S-Finder/Quick-Connect buttons)",					0	#-- selected.1 = 6
+);
+
+selectbox(
+	  "Adblock",
+	  "Choose if you want to block ads (system-wide) or not",
+	  "icons/update",
+	  "adblock.prop",
+
+	  "Choose what you want",	"",	                               		                  2, #-- Group 1. key = "selected.1"
+	  "Flash nothing",				"Flash nothing, I want to keep my current hosts file",		1,	#-- selected.1 = 1
+	  "Install Adblock hosts file",	"I don't wanna see any ads in apps and on websites",		0,	#-- selected.1 = 2
+	  "Disable adblocking",   		"I Love ads, give me them back!",							0	#-- selected.1 = 3
+);
+
+selectbox(
+	  "Stock Kernel",
+	  "Choose if you want to return to the latest stock kernel or not",
+	  "icons/update",
+	  "stockkernel.prop",
+
+	  "Choose what you want",	"",	                               		                  2, #-- Group 1. key = "selected.1"
+	  "Flash nothing",							"Flash nothing, I want to keep my current (custom or stock) kernel",							1,	#-- selected.1 = 1
+	  "Re-flash G920 F/I/K/L/S stock kernel",	"Re-flash latest G920F stock kernel plus re-install SuperSu 2.72 in System-less mode",			0,	#-- selected.1 = 2
+	  "Re-flash G925 F/I/K/L/S stock kernel",   "Re-flash latest G925F stock kernel plus re-install SuperSu 2.72 in System-less mode",			0,	#-- selected.1 = 3
+	  "Re-flash G920 W8/T stock kernel",		"Re-flash latest G920T stock kernel plus re-install SuperSu 2.72 in System-less mode",			0,	#-- selected.1 = 4
+	  "Re-flash G925 W8/T stock kernel",   		"Re-flash latest G925T stock kernel plus re-install SuperSu 2.72 in System-less mode",			0	#-- selected.1 = 5
+);
+
+ini_set("text_next", "Next");
+
+viewbox(
+    "Ready",
+    "The wizard is ready to begin the process.\n\n"+
+	"Press <b>Next</b> to begin the process.\n\n"+
+	"If you want to review or change any of your selection, press <b>Back</b>.",
+    "@install"
+);
+
+setvar("retstatus",
+  install(
+	#-- Title
+      "Please Wait...",
+	
+	#-- Installation Process message
+	  "<b>"+ini_get("rom_name")+"</b>\n\n"+
+      "Please wait while processing your selection...
+	   This may take several minutes.",
+	
+	#-- Installation Icon
+      "@install",
+	
+	#-- Installation Finish Message
+      "The process has successfully ended.
+	   Press Next to continue."
+  )
+);
+
+ini_set("text_next", "Finish");
+
+#---- FINISH
