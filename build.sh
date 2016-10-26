@@ -11,7 +11,7 @@ rm patryq-kernel.zip
 rm arch/arm64/boot/Image
 rm narzedzia/boot.img
 rm narzedzia/output/kernel
-rm zip-files/tmp/kernels/925stock/boot.img
+rm zip-files/boot.img
 
 #export 
 echo "setting up eviorment"
@@ -35,7 +35,7 @@ cp Image kernel
 rm Image
 cd ../
 ./mkboot output boot.img
-cp boot.img ../zip-files/tmp/kernels/925stock
+cp boot.img ../zip-files
 #zip_files
 echo "zipping kernel"
 cd ../zip-files
